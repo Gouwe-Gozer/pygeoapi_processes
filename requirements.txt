@@ -1,7 +1,13 @@
 climada
-dask>=2024.2,<2024.3
+# Dask 2024.2 crashes on the Python 3.12 patch level used by pygeoapi:latest.
+dask[dataframe]>=2024.5,<2024.6
 fiona
 Flask-cors>=5.0.0
+fsspec==2026.7.0
 gdal
 h5netcdf
 numpy==1.26.4
+# Keep the base image's S3 adapter compatible with the fsspec version above.
+s3fs==2026.7.0
+# 0.15 currently has no Python 3.12 wheel, and the runtime image has no compiler.
+statsmodels<0.15
